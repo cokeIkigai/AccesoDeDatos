@@ -188,15 +188,17 @@ public class Main {
 
 * Conseguir que conecte y se añadan los datos tal y como está en la documentación.
 
-* Una vez que hallais meido y entendido todo el codigo y el CRUD, me lo enseñais. (lo guardais)
+* En vez de que se añadan esos datos predeterminados, se comenta todo menos el `INSERT` para añadir los valores de los json que habeis creado.
+
+* Una vez que hallais metido y entendido todo el codigo y el CRUD junto a la lectura del archivo json y gson, me lo enseñais. (lo guardais)
 
 ### EJERCICIO 2
 
-* Añadir la conection a mongoDB a Cine con su libraría y que funcione
+* Añadir la conection a mongoDB a Cine con su libraría y que funcione. `conection a MongoDb correcta` 
 
-* Cuando en el Swagger metéis un insert empleado en el service además de insewrtarse en postgre mysql, poned la lógica para que se inserte en mongodb.
+* Cuando en el Swagger de cine metéis un insert empleado, en su service.emplado además de insertarse en postgre mysql, poned la lógica para que se inserte en mongodb.
 
-* Una vez conseguido podeis usar un endpoint donde la información de empleados vaya a mongo y todo el resto a postgre (mysql)
-* 
+* Una vez conseguido podeis usar un endpoint donde la información de empleados vaya a mongoDb.
+  
 
 
