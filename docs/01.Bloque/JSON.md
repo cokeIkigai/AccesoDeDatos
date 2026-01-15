@@ -156,3 +156,19 @@ Este JSON está pensado solo para aprender la estructura:
 }
 
 ```
+## Ejemplos de cambio de tablas a JSON
+
+![Tabla](../../img/tabla.png)
+
+**JSON:**
+
+```json
+{
+  "id": 1,
+  "nombre": Ana López,
+  "edad": 29,
+  "activo": TRUE,
+  "saldo" 1520,75,
+  "observaciones": null
+}
+```
