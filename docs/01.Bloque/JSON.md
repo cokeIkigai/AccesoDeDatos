@@ -172,3 +172,8 @@ Este JSON está pensado solo para aprender la estructura:
   "observaciones": null
 }
 ```
+--- 
+### Ejercicio: Guardalo en un archivo con extensión .json
+
+* Transforma 3 empleados de la tabla de Postgre.
+* Crea en MongoDb Compass 3 documentos de empleados.
