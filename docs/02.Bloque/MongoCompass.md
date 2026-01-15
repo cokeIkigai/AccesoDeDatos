@@ -31,15 +31,16 @@ A diferencia de las bases de datos relacionales, MongoDB:
 ### Creación de la Base de datos.
 Se da click al icono + para añadir la Base de datos nueva.
 
-<img src="../../img/newConnectionMongo.PNG" alt="connection" height="550">
+![Conection](https://github.com/cokeIkigai/Lenguajes/blob/ddf6619d2c3c12eb592d3513d51cdf1724294bc8/JAVA/img/newConnectionMongo.PNG)
+
 
 ### Interfaz de Compass
 - Se pueden ver todas las demás Bases de datos creadas con anterioridad.
 - Si selecionas una de ellas, aparecerán sus documentos con su forma JSON {clave:valor} 
 
-<img src="../../img/Compass.PNG" alt="Compass" height="950">
+![Compass](https://github.com/cokeIkigai/Lenguajes/blob/ddf6619d2c3c12eb592d3513d51cdf1724294bc8/JAVA/img/Compass.PNG)
 
 ### Insertar un nuevo Documento
 Utilizando el formato de JSON, se le irán añadiendo clave y valor de los mismos.
 
-<img src="../../img/insertDocument.PNG" alt="insert" height="550">
+![Compass](https://github.com/cokeIkigai/Lenguajes/blob/ddf6619d2c3c12eb592d3513d51cdf1724294bc8/JAVA/img/insertDocument.PNG)
