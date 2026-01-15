@@ -156,6 +156,8 @@ Este JSON está pensado solo para aprender la estructura:
 }
 
 ```
+--- 
+
 ## Ejemplos de cambio de tablas a JSON
 
 ![Tabla](../../img/tabla.png)
@@ -167,12 +169,52 @@ Este JSON está pensado solo para aprender la estructura:
   "id": 1,
   "nombre": "Ana López",
   "edad": 29,
-  "activo": TRUE,
+  "activo": true,
   "saldo" 1520,75,
   "observaciones": null
 }
 ```
+
+## Ejemplos de cambio de archivo.csv a JSON
+
+Un archivo csv, cada columna esta separada por `;` o `,` y si hay un enter sería la siguiente fila. 
+La primera fila suele corresponder a las keys. Hay a veces que el archivo esta corructo y faltan comas o puntos y comas y se debería revisar.
+
+```csv
+id;nombre;departamento;teletrabajo
+1;Carlos;IT;true
+2;Marta;RRHH;false
+3;Pedro;;true
+```
+**JSON:**
+
+```json
+{
+  "empleados": [
+        {
+            "id": 1,
+            "nombre": "Carlos",
+            "departamento": "IT",
+            "teletrabajo": true
+        },
+        {
+            "id": 2,
+            "nombre": "Marta",
+            "departamento": "RRHH",
+            "teletrabajo": false
+        },
+        {
+            "id": 3,
+            "nombre": "Pedro",
+            "departamento": null,
+            "teletrabajo": true
+        }
+    ]
+}
+```
+
 --- 
+
 ### Ejercicio: Guardalo en un archivo con extensión .json
 
 * Transforma 3 empleados de la tabla de Postgre.
