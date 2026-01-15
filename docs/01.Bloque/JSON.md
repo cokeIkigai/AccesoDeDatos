@@ -219,3 +219,21 @@ id;nombre;departamento;teletrabajo
 
 * Transforma 3 empleados de la tabla de Postgre.
 * Crea en MongoDb Compass 3 documentos de empleados.
+* Crea y descárgate un archivo .csv desde Mockaroo:
+
+  * Genera 50 filas con datos realistas y variados.
+
+  * Con ese archivo, importa los datos en una base de datos llamada mockaroo dentro de una colección/tabla llamada usuarios (50 documentos/registros).
+
+  * Campos mínimos que debe tener el CSV (recomendados):
+```console
+id → Row Number (empieza en 1)
+nombre → Full Name
+email → Email Address
+edad → Number (min 18, max 65)
+activo → Boolean
+saldo → Number (decimals 2, min 0, max 5000)
+fecha_alta → Date (últimos 2 años)
+telefono → Phone
+pais → Country
+```
