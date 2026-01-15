@@ -1,3 +1,5 @@
+
+
 # 📜 JSON
 
 ## ¿Qué es JSON?
@@ -84,7 +86,7 @@ Debe ser convertido a un `objeto nativo` de JavaScript cuando se requiera accede
 }
 ```
 
-### Reglas estrictas (evaluables)
+### Reglas estrictas 
 
 * Comillas dobles obligatorias
 * No coma final
@@ -119,33 +121,7 @@ class Persona {
 
 ---
 
-## 4. Librería usada: Gson
-
-Se trabaja con **Gson** (sencilla, clara y muy usada).
-
-Dependencia Maven:
-
-```xml
-<dependency>
-  <groupId>com.google.code.gson</groupId>
-  <artifactId>gson</artifactId>
-  <version>2.10.1</version>
-</dependency>
-```
-
-### Librería gson:
-
-Vimos cómo utilizábamos la librería Gson para leer y modificar archivos JSON. Para ello, Gson debe transformar los datos entre objetos Java y formato JSON.
-
-**Serialización (objeto → JSON):**
-Consiste en convertir un objeto Java en una representación `JSON`, que es un formato de texto estructurado. Esto permite guardar la información en un archivo o enviarla de forma independiente al lenguaje.
-
-**Deserialización (JSON → objeto):** 
-Consiste en leer un JSON y reconstruir los `objetos` Java correspondientes, de manera que podamos manejar sus datos dentro del programa.
-
----
-
-## 5. Lectura de un JSON desde archivo
+## 4. Lectura de un JSON desde archivo
 Este JSON está pensado solo para aprender la estructura:
 
 * Cada clave indica el tipo de dato
@@ -180,79 +156,3 @@ Este JSON está pensado solo para aprender la estructura:
 }
 
 ```
-
----
-
-### Acceder al JSON (Repaso)
-
-**Archivo: cliente.json **
-
-```json
-{
-  "id": 1,
-  "nombre": "Ana",
-  "email": "ana@email.com",
-  "edad": 30,
-  "activo": true,
-  "saldo": 1250.75,
-  "telefonos": ["600123123", "911223344"],
-  "direccion": {
-    "ciudad": "Madrid",
-    "cp": "28013"
-  }
-}
-```
-```java
-import com.google.gson.*;
-import java.io.FileReader;
-
-public class LeerClienteJson {
-
-    public static void main(String[] args) {
-
-        try {
-            Gson gson = new Gson();
-
-            JsonObject cliente = gson.fromJson(
-                new FileReader("cliente.json"), JsonObject.class
-            );
-
-            // Valores simples
-
-            // getAsInt para cuando es un entero
-            int id = cliente.get("id").getAsInt();
-            int edad = cliente.get("edad").getAsInt();
-
-            // getAsString para cuando es string
-            String nombre = cliente.get("nombre").getAsString();
-            String email = cliente.get("email").getAsString();        
-            
-
-            // getAsBoolean para cuando es boleano
-            boolean activo = cliente.get("activo").getAsBoolean();
-            // getAsDouble cuando es valor decimal
-            double saldo = cliente.get("saldo").getAsDouble();
-
-            // Array []
-            // getAsJsonArray para acceder a un array y se queda tipo JsonArray
-            JsonArray telefonos = cliente.getAsJsonArray("telefonos");
-            // Después se itera el array
-            // dependiendo de lo que tenga pues se accede con los valores simples de arriba
-            for (JsonElement t : telefonos) {
-                System.out.println("- " + t.getAsString());
-            }
-
-            // Objeto anidado {}
-            // dentro puede haber array y valores simples
-            JsonObject direccion = cliente.getAsJsonObject("direccion");
-            String ciudad = direccion.get("ciudad").getAsString();
-            String cp = direccion.get("cp").getAsString();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-```
----
-
