@@ -165,7 +165,7 @@ Este JSON está pensado solo para aprender la estructura:
 ```json
 {
   "id": 1,
-  "nombre": Ana López,
+  "nombre": "Ana López",
   "edad": 29,
   "activo": TRUE,
   "saldo" 1520,75,
