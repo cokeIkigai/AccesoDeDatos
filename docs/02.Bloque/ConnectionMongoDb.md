@@ -184,7 +184,7 @@ public class Main {
 
 ### EJERCICIO 1
 
-* Crear un poryecto llamado MongoDb
+* Crear un proyecto llamado MongoDb.
 
 * Conseguir que conecte y se añadan los datos tal y como está en la documentación.
 
