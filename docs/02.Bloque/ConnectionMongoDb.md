@@ -180,3 +180,23 @@ public class Main {
     }
 }
 ```
+---
+
+### EJERCICIO 1
+
+* Crear un poryecto llamado MongoDb
+
+* Conseguir que conecte y se añadan los datos tal y como está en la documentación.
+
+* Una vez que hallais meido y entendido todo el codigo y el CRUD, me lo enseñais. (lo guardais)
+
+### EJERCICIO 2
+
+* Añadir la conection a mongoDB a Cine con su libraría y que funcione
+
+* Cuando en el Swagger metéis un insert empleado en el service además de insewrtarse en postgre mysql, poned la lógica para que se inserte en mongodb.
+
+* Una vez conseguido podeis usar un endpoint donde la información de empleados vaya a mongo y todo el resto a postgre (mysql)
+* 
+
+
