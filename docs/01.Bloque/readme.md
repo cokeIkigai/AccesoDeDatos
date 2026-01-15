@@ -1,3 +1,6 @@
 
 
-[JSON](../01.Bloque/JSON.md)
+[JSON](JSON.md)
+
+
+
