@@ -1,40 +1,79 @@
-# TEMA: JSON aplicado a Java (base para Acceso a Datos)
+# 📜 JSON
 
-## Enfoque del tema
+## ¿Qué es JSON?
 
-Este tema prepara directamente para la asignatura **Acceso a Datos**. El JSON se trabaja como **fuente real de datos**, no como simple formato.
-
-El alumno debe ser capaz de:
-
-* Leer datos desde JSON
-* Mapear JSON ↔ objetos Java
-* Modificar datos
-* Persistir cambios
-* Entender que JSON es una alternativa real a la BD
+**JavaScript Object Notation** (JSON) es un formato basado en texto estándar para representar datos estructurados en la sintaxis de objetos de JavaScript.
 
 ---
 
-## 1. ¿Por qué JSON en Acceso a Datos?
+## 1. Qué es realmente JSON?
 
-Antes de usar:
+JSON es un formato de datos basado en `texto` que sigue la sintaxis de `objeto` de JavaScript.
 
-* JDBC
-* JPA / Hibernate
-* Bases de datos
+Los JSON son cadenas - útiles cuando se quiere transmitir datos a través de una red. 
 
-Se empieza por **ficheros estructurados**.
+Debe ser convertido a un `objeto nativo` de JavaScript cuando se requiera acceder a sus datos. Ésto no es un problema, dado que JavaScript posee un objeto global JSON que tiene los métodos disponibles para convertir entre ellos.  
 
-JSON representa:
+### JSON representa:
 
-* Persistencia
-* Serialización
-* Intercambio de datos
+* **Persistencia**
+* **Serialización**
+* **Intercambio de datos**
 
-Mismo concepto → distinto soporte.
+```json
+{
+  "empresa": "TechSolutions",
+  "version": "1.0",
+  "empleados": [
+    {
+      "id": 1,
+      "nombre": "Ana",
+      "apellidos": "García López",
+      "edad": 29,
+      "activo": true,
+      "email": "ana.garcia@techsolutions.com",
+      "departamento": {
+        "id": 10,
+        "nombre": "Desarrollo"
+      },
+      "puesto": "Programadora Java",
+      "salario": 32000.50,
+      "fechaAlta": "2022-03-15",
+      "habilidades": ["Java", "Spring", "SQL"],
+      "direccion": {
+        "calle": "Gran Vía 10",
+        "ciudad": "Madrid",
+        "cp": "28013"
+      }
+    },
+    {
+      "id": 2,
+      "nombre": "Luis",
+      "apellidos": "Martín Pérez",
+      "edad": 41,
+      "activo": true,
+      "email": "luis.martin@techsolutions.com",
+      "departamento": {
+        "id": 20,
+        "nombre": "Sistemas"
+      },
+      "puesto": "Administrador de Sistemas",
+      "salario": 28000,
+      "fechaAlta": "2019-09-01",
+      "habilidades": ["Linux", "Redes", "Docker"],
+      "direccion": {
+        "calle": "Calle Alcalá 45",
+        "ciudad": "Madrid",
+        "cp": "28014"
+      }
+    }
+  ]
+}
+```
 
 ---
 
-## 2. Estructura de JSON (repaso esencial)
+## 2. Estructura de JSON
 
 ```json
 {
@@ -54,7 +93,7 @@ Mismo concepto → distinto soporte.
 
 ---
 
-## 3. JSON y objetos Java (idea clave del tema)
+## 3. JSON y objetos Java
 
 | JSON    | Java         |
 | ------- | ------------ |
@@ -94,165 +133,126 @@ Dependencia Maven:
 </dependency>
 ```
 
-Conceptos:
+### Librería gson:
 
-* Serialización (objeto → JSON)
-* Deserialización (JSON → objeto)
+Vimos cómo utilizábamos la librería Gson para leer y modificar archivos JSON. Para ello, Gson debe transformar los datos entre objetos Java y formato JSON.
+
+**Serialización (objeto → JSON):**
+Consiste en convertir un objeto Java en una representación `JSON`, que es un formato de texto estructurado. Esto permite guardar la información en un archivo o enviarla de forma independiente al lenguaje.
+
+**Deserialización (JSON → objeto):** 
+Consiste en leer un JSON y reconstruir los `objetos` Java correspondientes, de manera que podamos manejar sus datos dentro del programa.
 
 ---
 
 ## 5. Lectura de un JSON desde archivo
+Este JSON está pensado solo para aprender la estructura:
 
-### Ejemplo: data/personas.json
+* Cada clave indica el tipo de dato
+
+* El valor muestra cómo se representa en JSON
+
+* Incluye todos los casos habituales y alguno mixto
 
 ```json
-[
-  { "id": 1, "nombre": "Ana", "edad": 25 },
-  { "id": 2, "nombre": "Luis", "edad": 30 }
-]
+{
+  "string": "Esto es un texto",
+  "number": 42,
+  "decimal": 19.95,
+  "boolean_true": true,
+  "boolean_false": false,
+  "null": null,
+
+  "array_strings": ["Java", "JSON", "Gson"],
+  "array_numbers": [1, 2, 3, 4],
+  "array_mixed": ["texto", 10, false],
+
+  "object": {
+    "clave": "valor",
+    "numero": 1,
+    "activo": true
+  },
+
+  "array_objects": [
+    { "id": 1, "nombre": "Ana" },
+    { "id": 2, "nombre": "Luis" }
+  ]
+}
+
 ```
 
-### Clase modelo
+---
 
-```java
-class Persona {
-  int id;
-  String nombre;
-  int edad;
+### Acceder al JSON (Repaso)
+
+**Archivo: cliente.json **
+
+```json
+{
+  "id": 1,
+  "nombre": "Ana",
+  "email": "ana@email.com",
+  "edad": 30,
+  "activo": true,
+  "saldo": 1250.75,
+  "telefonos": ["600123123", "911223344"],
+  "direccion": {
+    "ciudad": "Madrid",
+    "cp": "28013"
+  }
 }
 ```
-
-### Lectura en Java
-
 ```java
-Gson gson = new Gson();
-Reader reader = new FileReader("personas.json");
-Persona[] personas = gson.fromJson(reader, Persona[].class);
-```
+import com.google.gson.*;
+import java.io.FileReader;
 
----
+public class LeerClienteJson {
 
-## 6. JSON como "base de datos"
+    public static void main(String[] args) {
 
-Operaciones equivalentes a CRUD:
+        try {
+            Gson gson = new Gson();
 
-| Operación | JSON             |
-| --------- | ---------------- |
-| SELECT    | Leer archivo     |
-| INSERT    | Añadir objeto    |
-| UPDATE    | Modificar objeto |
-| DELETE    | Eliminar objeto  |
+            JsonObject cliente = gson.fromJson(
+                new FileReader("cliente.json"), JsonObject.class
+            );
 
-Esto conecta directamente con **DAO**.
+            // Valores simples
 
----
+            // getAsInt para cuando es un entero
+            int id = cliente.get("id").getAsInt();
+            int edad = cliente.get("edad").getAsInt();
 
-## 7. Guardar cambios en JSON
+            // getAsString para cuando es string
+            String nombre = cliente.get("nombre").getAsString();
+            String email = cliente.get("email").getAsString();        
+            
 
-```java
-Writer writer = new FileWriter("personas.json");
-gson.toJson(listaPersonas, writer);
-writer.close();
-```
+            // getAsBoolean para cuando es boleano
+            boolean activo = cliente.get("activo").getAsBoolean();
+            // getAsDouble cuando es valor decimal
+            double saldo = cliente.get("saldo").getAsDouble();
 
-Concepto clave:
+            // Array []
+            // getAsJsonArray para acceder a un array y se queda tipo JsonArray
+            JsonArray telefonos = cliente.getAsJsonArray("telefonos");
+            // Después se itera el array
+            // dependiendo de lo que tenga pues se accede con los valores simples de arriba
+            for (JsonElement t : telefonos) {
+                System.out.println("- " + t.getAsString());
+            }
 
-> Persistencia sin base de datos
-
----
-
-## 8. Patrón DAO con JSON (puente a Acceso a Datos)
-
-```java
-interface PersonaDAO {
-  List<Persona> findAll();
-  Persona findById(int id);
-  void save(Persona p);
-  void delete(int id);
+            // Objeto anidado {}
+            // dentro puede haber array y valores simples
+            JsonObject direccion = cliente.getAsJsonObject("direccion");
+            String ciudad = direccion.get("ciudad").getAsString();
+            String cp = direccion.get("cp").getAsString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+
 ```
-
-Implementación:
-
-* PersonaDAOJson
-* Lee y escribe JSON
-
-Mismo patrón → luego JDBC / JPA.
-
 ---
 
-## 9. Errores reales (muy importantes)
-
-* JSON mal formado
-* Tipos incompatibles
-* Archivos vacíos
-* Clases que no coinciden con estructura
-
-Se trabajan como **excepciones**.
-
----
-
-## 10. Ejercicios propuestos
-
-### Ejercicio 1 – Interpretación
-
-Dado un JSON:
-
-* Identificar objetos
-* Identificar arrays
-* Detectar errores
-
----
-
-### Ejercicio 2 – Lectura
-
-* Leer JSON
-* Mostrar datos por consola
-
----
-
-### Ejercicio 3 – CRUD
-
-* Añadir persona
-* Modificar edad
-* Eliminar por id
-* Guardar cambios
-
----
-
-### Ejercicio 4 – DAO
-
-* Crear interfaz DAO
-* Implementar con JSON
-
----
-
-### Ejercicio 5 – Puente a BD
-
-Pregunta teórica:
-
-> ¿Qué cambiaría si los datos estuvieran en una base de datos?
-
----
-
-## 11. Evaluación
-
-* Comprende JSON
-* Mapea correctamente a Java
-* Usa Gson
-* Implementa CRUD
-* Entiende el paso a Acceso a Datos
-
----
-
-## Idea pedagógica clave
-
-> JSON no es el fin. Es el **primer proveedor de datos**.
-
-Luego vendrán:
-
-* JDBC
-* JPA
-* APIs
-
-El alumno ya sabrá **leer, transformar y persistir datos**.
