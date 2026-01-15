@@ -1,3 +1,3 @@
-[Compass](../MongoCompass.md)
+[Compass](MongoCompass.md)
 
 [Connection](ConnectionMongoDb)
