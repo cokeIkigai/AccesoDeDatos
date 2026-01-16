@@ -170,7 +170,7 @@ Este JSON está pensado solo para aprender la estructura:
   "nombre": "Ana López",
   "edad": 29,
   "activo": true,
-  "saldo" 1520,75,
+  "saldo": 1520.75,
   "observaciones": null
 }
 ```
