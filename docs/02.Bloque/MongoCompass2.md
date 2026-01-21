@@ -39,7 +39,7 @@ Cada etapa comienza por $ y cumple una función concreta:
 
 * **Filtrar**: *$match*
 
-  * Filtra documentos (equivalente a WHERE en SQL)
+  * Filtra documentos 
 
   * Reduce datos antes de agrupar
 
@@ -53,11 +53,14 @@ Cada etapa comienza por $ y cumple una función concreta:
 
   * Permite cálculos acumulados
 
-* **Ordenar**: *$sort, $limit, $skip*
+* **Ordenar**:
 
-  * Ordenación de resultados
+ * **$sort:** – Ordenar resultados
 
-  * Limitación y paginación
+ * **$limit:** – Limitar resultados
+   
+ * **$skip:** – Saltar resultados
+
 
 * **Transformar**: *$addFields y $set*
   
@@ -88,6 +91,31 @@ Cada etapa comienza por $ y cumple una función concreta:
   * $push: agrupa valores en un array
   
   * $addToSet: agrupa valores únicos
+ 
+* **Operadores de expresiones**: 
+
+* **Operadores aritméticos**:
+* **$add, $subtract, $multiply, $divide)
+
+* **Operadores lógicos** ($and, $or, $not)
+
+Operadores condicionales ($cond, $ifNull)
+
+Operadores de comparación ($eq, $gt, $lt, $gte, $lte)
+
+* **Operadores de fecha:** *$year, $month, $dayOfMonth, $dateToString*
+
+ * Agrupaciones por día, mes y año
+
+ * Casos prácticos de informes temporales
+
+* **Joins en MongoDB**: *$lookup*
+
+ * Relación entre colecciones
+
+ * $lookup básico
+
+ * $lookup con pipeline
 
 ---
 
@@ -127,30 +155,7 @@ Manipulación de arrays dentro del pipeline
 
 Reestructuración de documentos
 
-* **Operadores de expresiones**: 
 
-* **Operadores aritméticos**:
-* **$add, $subtract, $multiply, $divide)
-
-* **Operadores lógicos** ($and, $or, $not)
-
-Operadores condicionales ($cond, $ifNull)
-
-Operadores de comparación ($eq, $gt, $lt, $gte, $lte)
-
-* **Operadores de fecha:** *$year, $month, $dayOfMonth, $dateToString*
-
- * Agrupaciones por día, mes y año
-
- * Casos prácticos de informes temporales
-
-* **Joins en MongoDB**: *$lookup*
-
- * Relación entre colecciones
-
- * $lookup básico
-
- * $lookup con pipeline
 
 
 
