@@ -6,7 +6,7 @@
 
 - En lugar de devolver documentos individuales, una agregación devuelve resultados calculados (contadores, medias, totales, agrupaciones).
 
-**¿Para qué se usan las agregaciones?**
+**¿Para qué se usan las [agregaciones](https://aitor-medrano.github.io/iabd2223/sa/05agregaciones.html#operadores-del-pipeline)?**
 
 1. Análisis de logs y eventos del sistema.
 
@@ -25,25 +25,25 @@
 - **aggregate:** análisis de datos.
 
 *Una agregación puede filtrar, agrupar, ordenar y calcular en una sola operación.*
+---
 
-2. El Aggregation Pipeline.
-2.1 Concepto de pipeline.
+## El Aggregation Pipeline.
 
-El Aggregation Pipeline es una secuencia de etapas (stages). Cada etapa recibe documentos, los procesa y pasa el resultado a la siguiente.
+El `Aggregation Pipeline` es una secuencia de etapas (stages). Cada etapa recibe documentos, los procesa y pasa el resultado a la siguiente.
 
 Se puede comparar con una cadena de montaje o con una tubería de datos.
 
-2.2 Etapas del pipeline
+### Etapas del pipeline
 
 Cada etapa comienza por $ y cumple una función concreta:
 
-Filtrar
+* Filtrar
 
-Agrupar
+* Agrupar
 
-Ordenar
+* Ordenar
 
-Transformar
+* Transformar
 
 2.3 Flujo de datos
 
