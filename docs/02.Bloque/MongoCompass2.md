@@ -95,27 +95,47 @@ Cada etapa comienza por $ y cumple una función concreta:
 * **Operadores de expresiones**: 
 
 * **Operadores aritméticos**:
-* **$add, $subtract, $multiply, $divide)
+  * $add: Para $addicionar el impuesto al total de la factura.
 
-* **Operadores lógicos** ($and, $or, $not)
+  * $subtract: Necesitamos $subtract (restar) los gastos de los ingresos para calcular la utilidad.
 
-Operadores condicionales ($cond, $ifNull)
+  * $multiply: Debes $multiply (multiplicar) el precio unitario por la cantidad vendida.
 
-Operadores de comparación ($eq, $gt, $lt, $gte, $lte)
+  * $divide: Para hallar el promedio, debes $divide (dividir) la suma total entre el número de elementos.
 
-* **Operadores de fecha:** *$year, $month, $dayOfMonth, $dateToString*
+  * $and: El pago se procesará $and (y) el pedido se enviará solo si el stock está disponible $and (y) la dirección es válida.
 
- * Agrupaciones por día, mes y año
+  * $or: Puedes pagar con tarjeta $or (o) con transferencia bancaria.
 
- * Casos prácticos de informes temporales
+  * $not: $not (No) se aceptarán devoluciones si la etiqueta ha sido removida.
+ 
+  * **Operadores Condicionales**:
+    
+    * $cond: Usaremos $cond para asignar un descuento del 10% si el cliente es frecuente, de lo contrario, el descuento será del 0%.
 
-* **Joins en MongoDB**: *$lookup*
+    * $ifNull: Aplicamos $ifNull al campo telefono para mostrar "No registrado" en el informe si el valor es nulo o no existe.
 
- * Relación entre colecciones
+  * **Operadores de Comparación**:
+    
+    * $eq: Filtraremos los productos cuyo estado $eq (sea igual a) "activo".
 
- * $lookup básico
+    * $gt: Buscamos clientes con un puntaje de fidelidad $gt (mayor que) 100.
 
- * $lookup con pipeline
+    * $lt: Seleccionaremos las órdenes con un monto total $lt (menor que) 50 para análisis de microventas.
+
+    * $gte: El filtro aplica para pedidos $gte (mayores o iguales a) una fecha específica.
+
+    * $lte: La promoción es válida para productos con precio $lte (menor o igual a) $20.
+
+* **Operadores de fecha:** 
+
+    * $year: Extraemos el año con {$year: "$fecha"} para agrupar las ventas por año.
+
+    * $month: Separamos el mes con {$month: "$fecha"} y creamos un informe de ventas mensuales.
+
+    * $dayOfMonth: Obtenemos el día con {$dayOfMonth: "$fecha"} y analizamos las ventas diarias.
+
+    * $dateToString: Formateamos la fecha a "dd/mm/aaaa" con {$dateToString: {format: "%d/%m/%Y", date: "$fecha"}} para el reporte.
 
 ---
 
@@ -133,27 +153,11 @@ Operadores de comparación ($eq, $gt, $lt, $gte, $lte)
 
 ---
 
-Ejemplos de agregación por categoría, usuario o fecha.
+Buscar para estos comandos y dejalo comentado en el codigo.
 
-5. Operaciones con arrays
-5.1 $unwind
-
-Descomposición de arrays
-
-Uso con preserveNullAndEmptyArrays
-
-5.2 $arrayElemAt, $size, $filter
-
-Manipulación de arrays dentro del pipeline
-
-6. Transformación de datos
-6.1 $addFields y $set
+$unwind,  $arrayElemAt, $size, $filter, $replaceRoot y $replaceWith
 
 
-
-6.2 $replaceRoot y $replaceWith
-
-Reestructuración de documentos
 
 
 
