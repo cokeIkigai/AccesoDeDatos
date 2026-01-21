@@ -55,18 +55,18 @@ Cada etapa comienza por $ y cumple una función concreta:
 
 * **Ordenar**:
 
- * **$sort:** – Ordenar resultados
+  * **$sort:** – Ordenar resultados
 
- * **$limit:** – Limitar resultados
+  * **$limit:** – Limitar resultados
    
- * **$skip:** – Saltar resultados
+  * **$skip:** – Saltar resultados
 
 
 * **Transformar**: *$addFields y $set*
   
-  * Añadir campos calculados.
-   
-  * Diferencias con $project.
+  * $addFields – Añadir campos
+
+  * $set – Modificar o añadir campos 
 
 * **Selección y cálculo:**  *$project*
 
