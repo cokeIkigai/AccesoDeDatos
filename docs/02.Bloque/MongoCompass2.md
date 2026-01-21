@@ -1,33 +1,33 @@
-Agregaciones en MongoDB (ASIR – Gestión de Bases de Datos)
-1. Introducción a las agregaciones
-1.1 Concepto de agregación
+# Agregaciones en MongoDB 
 
-Una agregación es un mecanismo de MongoDB que permite procesar, agrupar y transformar conjuntos de documentos para obtener información resumida o analítica.
+## Concepto de agregación
 
-En lugar de devolver documentos individuales, una agregación devuelve resultados calculados (contadores, medias, totales, agrupaciones).
+- Una agregación es un mecanismo de MongoDB que permite `procesar, agrupar y transformar` conjuntos de documentos para obtener información resumida o analítica.
 
-1.2 ¿Para qué se usan las agregaciones? (en ASIR)
+- En lugar de devolver documentos individuales, una agregación devuelve resultados calculados (contadores, medias, totales, agrupaciones).
 
-Análisis de logs y eventos del sistema
+**¿Para qué se usan las agregaciones?**
 
-Informes de uso y actividad
+1. Análisis de logs y eventos del sistema.
 
-Auditoría de accesos
+2. Informes de uso y actividad.
 
-Detección de errores y picos de carga
+3. Auditoría de accesos.
 
-Apoyo a la administración de sistemas
+4. Detección de errores y picos de carga.
 
-1.3 Diferencia entre find y aggregate
+5. Apoyo a la administración de sistemas.
 
-find: búsqueda de documentos
+## Diferencia entre find y aggregate.
 
-aggregate: análisis de datos
+- **find:** búsqueda de documentos. 
 
-Una agregación puede filtrar, agrupar, ordenar y calcular en una sola operación.
+- **aggregate:** análisis de datos.
 
-2. El Aggregation Pipeline
-2.1 Concepto de pipeline
+*Una agregación puede filtrar, agrupar, ordenar y calcular en una sola operación.*
+
+2. El Aggregation Pipeline.
+2.1 Concepto de pipeline.
 
 El Aggregation Pipeline es una secuencia de etapas (stages). Cada etapa recibe documentos, los procesa y pasa el resultado a la siguiente.
 
