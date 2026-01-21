@@ -8,17 +8,17 @@
 
 **¿Para qué se usan las [agregaciones](https://aitor-medrano.github.io/iabd2223/sa/05agregaciones.html#operadores-del-pipeline)?**
 
-1. Análisis de logs y eventos del sistema.
+1. `Análisis` de logs y eventos del sistema.
 
-2. Informes de uso y actividad.
+2. `Informes` de uso y actividad.
 
-3. Auditoría de accesos.
+3. `Auditoría` de accesos.
 
-4. Detección de errores y picos de carga.
+4. `Detección` de errores y picos de carga.
 
-5. Apoyo a la administración de sistemas.
+5. `Apoyo` a la administración de sistemas.
 
-## Diferencia entre find y aggregate.
+### Diferencia entre find y aggregate.
 
 - **find:** búsqueda de documentos. 
 
@@ -27,7 +27,7 @@
 *Una agregación puede filtrar, agrupar, ordenar y calcular en una sola operación.*
 ---
 
-## El Aggregation Pipeline.
+### El Aggregation Pipeline.
 
 El `Aggregation Pipeline` es una secuencia de etapas (stages). Cada etapa recibe documentos, los procesa y pasa el resultado a la siguiente.
 
@@ -37,198 +37,73 @@ Se puede comparar con una cadena de montaje o con una tubería de datos.
 
 Cada etapa comienza por $ y cumple una función concreta:
 
-* Filtrar
+* **Filtrar**: *$match*
 
-* Agrupar
+  * Filtra documentos (equivalente a WHERE en SQL)
 
-* Ordenar
+  * Reduce datos antes de agrupar
 
-* Transformar
+  * Mejora el rendimiento   
 
-2.3 Flujo de datos
+* **Agrupar**: *$group* 
 
-MongoDB toma los documentos de la colección
+  * Agrupa documentos por un campo
 
-Aplica la primera etapa
+  * Siempre usa _id como clave de agrupación
 
-El resultado pasa a la siguiente
+  * Permite cálculos acumulados
 
-El resultado final se devuelve al usuario
+* **Ordenar**: *$sort, $limit, $skip*
 
-3. Etapas fundamentales del pipeline
-3.1 $match – Filtrado
+  * Ordenación de resultados
 
-Filtra documentos (equivalente a WHERE en SQL)
+  * Limitación y paginación
 
-Reduce datos antes de agrupar
+* **Transformar**: *$addFields y $set*
+  
+  * Añadir campos calculados.
+   
+  * Diferencias con $project.
 
-Mejora el rendimiento
+* **Selección y cálculo:**  *$project*
 
-3.2 $group – Agrupación
+  * Selecciona campos
 
-Agrupa documentos por un campo
+  * Renombra campos
 
-Siempre usa _id como clave de agrupación
+  * Crea campos calculados
+ 
+* **Acumuladores**: Funciones de agregación
 
-Permite cálculos acumulados
+  * $sum: suma o contador
+  
+  * $avg: media
+  
+  * $min: valor mínimo
+  
+  * $max: valor máximo
+  
+  * $count: número de documentos
+  
+  * $push: agrupa valores en un array
+  
+  * $addToSet: agrupa valores únicos
 
-3.3 $project – Selección y cálculo
+---
 
-Selecciona campos
+### Flujo de datos
 
-Renombra campos
+1. MongoDB `toma` los documentos de la colección.
 
-Crea campos calculados
+2. `Aplica` la primera etapa.
 
-3.4 $sort, $limit, $skip
+3. El resultado pasa a la `siguiente`.
 
-Ordenación de resultados
+4. El resultado final se `devuelve` al usuario.
 
-Limitación y paginación
+---
 
-4. Funciones de agregación (acumuladores)
-
-$sum: suma o contador
-
-$avg: media
-
-$min: valor mínimo
-
-$max: valor máximo
-
-$count: número de documentos
-
-$push: agrupa valores en un array
-
-$addToSet: agrupa valores únicos
-
-5. Ejemplos conceptuales (sin código)
-
-Supongamos una colección logs_sistema con:
-
-usuario
-
-fecha
-
-tipo (INFO, WARNING, ERROR)
-
-servidor
-
-Con agregaciones podemos obtener:
-
-Número de errores por día
-
-Eventos por servidor
-
-Accesos por usuario
-
-Tipos de eventos más frecuentes
-
-6. Ejercicios propuestos (ASIR)
-Ejercicio 1 – Conteo de eventos
-
-Indica qué agregación usarías para:
-
-Contar cuántos eventos hay en total
-
-Contar cuántos eventos de tipo ERROR existen
-
-Ejercicio 2 – Agrupación por servidor
-
-A partir de logs_sistema, obtén:
-
-Número de eventos por servidor
-
-Servidor con más incidencias
-
-Ejercicio 3 – Análisis por usuario
-
-Obtén:
-
-Número de accesos por usuario
-
-Usuarios con más de 100 eventos registrados
-
-Ejercicio 4 – Análisis temporal
-
-Calcula:
-
-Eventos por día
-
-Día con mayor número de errores
-
-7. Relación con SQL (repaso ASIR)
-
-WHERE → $match
-
-GROUP BY → $group
-
-SELECT → $project
-
-ORDER BY → $sort
-
-Las agregaciones en MongoDB cumplen el mismo rol que las consultas de informes y análisis en SQL.
-
-Etapas (stages) del pipeline
-
-Flujo de documentos entre etapas
-
-Sintaxis general de db.coleccion.aggregate([])
-
-Orden y encadenamiento de etapas
-
-3. Etapas básicas del pipeline
-3.1 $match
-
-Filtrado de documentos
-
-Equivalencia con find
-
-Uso temprano para optimización
-
-3.2 $project
-
-Inclusión y exclusión de campos
-
-Renombrado de campos
-
-Campos calculados
-
-3.3 $limit y $skip
-
-Paginación de resultados
-
-Buenas prácticas
-
-3.4 $sort
-
-Ordenación ascendente y descendente
-
-Ordenación por múltiples campos
-
-4. Agrupaciones con $group
-
-Concepto de agrupación
-
-Campo _id en $group
-
-Funciones acumuladoras:
-
-$sum
-
-$avg
-
-$min
-
-$max
-
-$count
-
-$push
-
-$addToSet
-
-Ejemplos de agregación por categoría, usuario o fecha
+Ejemplos de agregación por categoría, usuario o fecha.
 
 5. Operaciones con arrays
 5.1 $unwind
@@ -244,9 +119,7 @@ Manipulación de arrays dentro del pipeline
 6. Transformación de datos
 6.1 $addFields y $set
 
-Añadir campos calculados
 
-Diferencias con $project
 
 6.2 $replaceRoot y $replaceWith
 
