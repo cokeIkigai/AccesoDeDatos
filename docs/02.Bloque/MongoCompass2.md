@@ -177,30 +177,29 @@ Cantidad recomendada: **500–800 registros**
 | costeHora        | Number (15–40)                                             | 25                   |
 | fechaCreacion    | Datetime (last 2 years)                                    | 2025-10-02           |
 | satisfaccion     | Number (1–5)                                               | 4                    |
-| tags             | Array (2–4 elementos) → vpn, wifi, servidor, backup, email | ["vpn","wifi"]       |
 | tecnico          | Full Name                                                  | Carlos Ruiz          |
 | reabierto        | Boolean                                                    | true                 |
 
-1. Contar el número total de tickets registrados en la colección.
-2. Mostrar únicamente los tickets cuyo estado sea "Abierto".
-3. Calcular el número de tickets por departamento.
-4. Calcular el número de tickets por prioridad y ordenarlos de mayor a menor.
-5. Obtener la media de horasResolucion global del sistema.
-6. Calcular las horas medias de resolución por departamento.
-7. Crear un campo costeTicket = horasResolucion * costeHora y mostrar el coste total acumulado.
-8. Mostrar los 5 técnicos con mayor número de tickets gestionados.
-9. Determinar qué categoría tiene más incidencias registradas.
-10. Listar los tickets críticos cuya resolución haya superado 10 horas.
-11. Añadir un campo booleano lento que indique si horasResolucion > 8.
-12. Formatear fechaCreacion a formato dd/mm/yyyy usando una proyección.
-13. Mostrar solo los campos ticketId, tecnico y costeTicket.
-14. Calcular la satisfacción media por técnico.
-15. Separar cada elemento del array tags en documentos individuales.
-16. Contar cuántas veces aparece cada tag en todo el sistema.
-17. Añadir un campo numTags con el tamaño del array tags.
-18. Filtrar los tickets que contengan la etiqueta "vpn".
-19. Agrupar por año y mes de fechaCreacion y calcular total de tickets, horas medias y coste total.
-20. Crear un pipeline final por departamento que muestre total tickets, coste total, horas medias, satisfacción media y porcentaje de tickets reabiertos, ordenado por coste descendente.
+1. Contar el número total de tickets registrados en la colección usando $count.
+2. Mostrar únicamente los tickets cuyo estado sea "Abierto" usando $match.
+3. Calcular el número de tickets por departamento usando $group + $sum.
+4. Calcular el número de tickets por prioridad y ordenarlos de mayor a menor usando $group + $sort.
+5. Obtener la media global de horasResolucion usando $group + $avg.
+6. Calcular las horas medias de resolución por departamento usando $group.
+7. Crear un campo costeTicket = horasResolucion * costeHora usando $addFields + $multiply.
+8. Calcular el coste total acumulado de todos los tickets usando $group + $sum.
+9. Mostrar los 5 técnicos con mayor número de tickets gestionados usando $group + $sort + $limit.
+10. Determinar qué categoría tiene más incidencias registradas usando $group + $sort + $limit.
+11. Listar los tickets críticos cuya resolución haya superado 10 horas usando $match + $gt.
+12. Añadir un campo booleano lento que indique si horasResolucion > 8 usando $addFields + $cond.
+13. Formatear fechaCreacion al formato dd/mm/yyyy usando $project + $dateToString.
+14. Mostrar solo los campos ticketId, tecnico y costeTicket usando $project.
+15. Calcular la satisfacción media por técnico usando $group + $avg.
+16. Calcular el número de tickets reabiertos por departamento usando $match + $group.
+17. Obtener el porcentaje de tickets reabiertos respecto al total por departamento usando $group + operaciones aritméticas.
+18. Agrupar por año de fechaCreacion y contar tickets anuales usando $year + $group.
+19. Agrupar por año y mes de fechaCreacion y calcular total tickets, horas medias y coste total usando $year + $month + $group.
+20. Construir un pipeline final por departamento que muestre total tickets, coste total, horas medias, satisfacción media y porcentaje de reabiertos, ordenado por coste descendente.
 
 
 
