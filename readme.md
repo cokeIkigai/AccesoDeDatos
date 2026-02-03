@@ -7,4 +7,4 @@ Selecciona el Temario por bloques
 
 [03.Bloque](docs/03.Bloque/readme.md) 
 
-[04.Bloque](docs/04.Bloque/readme.md) 
+
